@@ -1,0 +1,129 @@
+﻿// See https://aka.ms/new-console-template for more information
+
+//string[] palabras;
+//palabras = new string[] { "Gato", "Perro", "Lagarta", "Tortuga", "Yo","raton","Johanna" };
+
+//List<string> resultado = new List<string>();
+
+//foreach(string animal in palabras)
+//{
+//    if (animal.Length>5)
+//    {
+//        resultado.Add(animal);
+//    }
+//}
+
+//foreach(var i in resultado)
+//{
+//    Console.WriteLine(i);
+//}
+
+
+//Console.WriteLine("---------------------");
+//IEnumerable<string> list = from i in palabras where i.Length > 5 select i;
+
+
+//foreach (var listado in list)
+//{
+//    Console.WriteLine(listado);
+//}
+
+
+//Console.WriteLine("---------------------");
+
+using Introduccion_LINQ;
+
+List<Casa> Casas = new List<Casa>();
+List<Habitante> Habitante = new List<Habitante>();
+
+
+
+//CASAS
+Casas.Add(new Casa
+{
+    idCasa = 1,
+    Direccion="3 av Norte Arcancity",
+    Ciudad="Gothan City",
+    numHabitaciones=10,
+});
+
+Casas.Add(new Casa
+{
+    idCasa = 2,
+    Direccion = "8 calle poniente",
+    Ciudad = "Nueva Concepcion",
+    numHabitaciones = 5,
+});
+
+Casas.Add(new Casa
+{
+    idCasa = 3,
+    Direccion = "7 av suroeste ",
+    Ciudad = "Nueva Concepcion",
+    numHabitaciones = 4,
+});
+
+Casas.Add(new Casa
+{
+    idCasa = 4,
+    Direccion = "2 calle oriente",
+    Ciudad = "Metapan",
+    numHabitaciones = 6,
+});
+
+
+//HABITANTES
+Habitante.Add(new Habitante { 
+    idHabitante=1,
+    Nombre="Anderson Juvini",
+    Edad=19,
+    idCasa=2
+});
+
+Habitante.Add(new Habitante
+{
+    idHabitante = 2,
+    Nombre = "Juan leonidas",
+    Edad = 22,
+    idCasa = 2
+});
+
+Habitante.Add(new Habitante
+{
+    idHabitante = 3,
+    Nombre = "Rafael Edmundo",
+    Edad = 21,
+    idCasa = 1
+});
+
+Habitante.Add(new Habitante
+{
+    idHabitante = 4,
+    Nombre = "Carlos Salguero",
+    Edad = 18,
+    idCasa = 1
+});
+
+
+IEnumerable<Habitante> ListaEdades = from edades in Habitante
+                                     where edades.Edad > 17 && edades.Edad<20
+                                     select edades;
+Console.WriteLine("------------------------------------------");
+foreach (Habitante edades2 in ListaEdades)
+{
+    Console.WriteLine(edades2.datoHabitante());
+}
+
+Console.WriteLine("------------------------------------------");
+
+IEnumerable<Habitante> ListaCasas2 = from habitantetemportal in Habitante
+                                     join casatemportal in Casas
+                                     on habitantetemportal.idHabitante equals casatemportal.idCasa
+                                     where casatemportal.Ciudad == "Nueva Concepcion"
+                                     select habitantetemportal;
+Console.WriteLine("\n------------------------------------------");
+foreach (Habitante h in ListaCasas2)
+{
+    Console.WriteLine(h.datoHabitante());
+}
+Console.WriteLine("------------------------------------------");
