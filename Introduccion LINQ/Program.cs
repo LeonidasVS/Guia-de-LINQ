@@ -36,7 +36,7 @@ using Introduccion_LINQ;
 List<Casa> Casas = new List<Casa>();
 List<Habitante> Habitante = new List<Habitante>();
 
-
+// ---- GUIA DE LINQ ----- //
 
 //CASAS
 Casas.Add(new Casa
@@ -83,7 +83,7 @@ Habitante.Add(new Habitante {
 Habitante.Add(new Habitante
 {
     idHabitante = 2,
-    Nombre = "Juan leonidas",
+    Nombre = "Bryan Alexis",
     Edad = 22,
     idCasa = 2
 });
@@ -92,7 +92,7 @@ Habitante.Add(new Habitante
 {
     idHabitante = 3,
     Nombre = "Rafael Edmundo",
-    Edad = 21,
+    Edad = 22,
     idCasa = 1
 });
 
@@ -105,25 +105,53 @@ Habitante.Add(new Habitante
 });
 
 
-IEnumerable<Habitante> ListaEdades = from edades in Habitante
-                                     where edades.Edad > 17 && edades.Edad<20
-                                     select edades;
-Console.WriteLine("------------------------------------------");
-foreach (Habitante edades2 in ListaEdades)
-{
-    Console.WriteLine(edades2.datoHabitante());
-}
+//IEnumerable<Habitante> ListaEdades = from edades in Habitante
+//                                     where edades.Edad > 17 && edades.Edad<20
+//                                     select edades;
+//Console.WriteLine("------------------------------------------");
+//foreach (Habitante edades2 in ListaEdades)
+//{
+//    Console.WriteLine(edades2.datoHabitante());
+//}
 
-Console.WriteLine("------------------------------------------");
+//Console.WriteLine("------------------------------------------");
 
-IEnumerable<Habitante> ListaCasas2 = from habitantetemportal in Habitante
-                                     join casatemportal in Casas
-                                     on habitantetemportal.idHabitante equals casatemportal.idCasa
-                                     where casatemportal.Ciudad == "Nueva Concepcion"
-                                     select habitantetemportal;
-Console.WriteLine("\n------------------------------------------");
-foreach (Habitante h in ListaCasas2)
+//IEnumerable<Habitante> ListaCasas2 = from habitantetemportal in Habitante
+//                                     join casatemportal in Casas
+//                                     on habitantetemportal.idHabitante equals casatemportal.idCasa
+//                                     where casatemportal.Ciudad == "Nueva Concepcion"
+//                                     select habitantetemportal;
+//Console.WriteLine("\n------------------------------------------");
+//foreach (Habitante h in ListaCasas2)
+//{
+//    Console.WriteLine(h.datoHabitante());
+//}
+//Console.WriteLine("------------------------------------------");
+
+
+// ---- GUIA DE LAMBDA ----- //
+
+var primeraCasa = Casas.First();
+
+Console.WriteLine(primeraCasa.dameDatosCasa());
+
+Habitante personaEdad = (from variableHabitante in Habitante
+                         where variableHabitante.Edad >20
+                         select variableHabitante).First();
+
+Console.WriteLine(personaEdad.datoHabitante());
+
+
+//Lo mismo pero con LAMBDA
+
+var huespedes = Habitante.First(x => x.Edad > 20);
+
+Console.WriteLine(huespedes.datoHabitante());
+
+Casa buscarCasa = Casas.FirstOrDefault(x => x.numHabitaciones > 3 && x.numHabitaciones<7);
+if (buscarCasa==null)
 {
-    Console.WriteLine(h.datoHabitante());
+    Console.WriteLine("NO EXISTE NADA");
+    return;
 }
-Console.WriteLine("------------------------------------------");
+Console.WriteLine($"SI EXISTE: \nLa {buscarCasa.dameDatosCasa()}");
