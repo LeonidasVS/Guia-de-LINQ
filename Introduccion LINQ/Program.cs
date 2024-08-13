@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+#region Arrays
 //string[] palabras;
 //palabras = new string[] { "Gato", "Perro", "Lagarta", "Tortuga", "Yo","raton","Johanna" };
 
@@ -27,18 +28,19 @@
 //{
 //    Console.WriteLine(listado);
 //}
-
-
 //Console.WriteLine("---------------------");
+
+#endregion
 
 using Introduccion_LINQ;
 
+#region Guia LINQ
+// ---- GUIA DE LINQ ----- //
 List<Casa> Casas = new List<Casa>();
 List<Habitante> Habitante = new List<Habitante>();
 
-// ---- GUIA DE LINQ ----- //
-
 //CASAS
+
 Casas.Add(new Casa
 {
     idCasa = 1,
@@ -128,30 +130,51 @@ Habitante.Add(new Habitante
 //}
 //Console.WriteLine("------------------------------------------");
 
+#endregion
 
+#region Guia LAMBDA
 // ---- GUIA DE LAMBDA ----- //
 
-var primeraCasa = Casas.First();
+//var primeraCasa = Casas.First();
 
-Console.WriteLine(primeraCasa.dameDatosCasa());
+//Console.WriteLine(primeraCasa.dameDatosCasa());
 
-Habitante personaEdad = (from variableHabitante in Habitante
-                         where variableHabitante.Edad >20
-                         select variableHabitante).First();
+//Habitante personaEdad = (from variableHabitante in Habitante
+//                         where variableHabitante.Edad >20
+//                         select variableHabitante).First();
 
-Console.WriteLine(personaEdad.datoHabitante());
+//Console.WriteLine(personaEdad.datoHabitante());
 
 
-//Lo mismo pero con LAMBDA
+////Lo mismo pero con LAMBDA
 
-var huespedes = Habitante.First(x => x.Edad > 20);
+//var huespedes = Habitante.First(x => x.Edad > 20);
 
-Console.WriteLine(huespedes.datoHabitante());
+//Console.WriteLine(huespedes.datoHabitante());
 
-Casa buscarCasa = Casas.FirstOrDefault(x => x.numHabitaciones > 3 && x.numHabitaciones<7);
-if (buscarCasa==null)
+//Casa buscarCasa = Casas.FirstOrDefault(x => x.numHabitaciones > 3 && x.numHabitaciones<7);
+//if (buscarCasa==null)
+//{
+//    Console.WriteLine("NO EXISTE NADA");
+//    return;
+//}
+//Console.WriteLine($"SI EXISTE: \nLa {buscarCasa.dameDatosCasa()}");
+
+#endregion
+
+#region Guia Clausula Last y LasOrDefault
+
+
+Casa ultimacasa = Casas.Last(temp=>temp.idCasa>1);
+Console.WriteLine(ultimacasa.dameDatosCasa());
+Console.WriteLine("---------------------------------------------------------\n");
+
+var h1 = (from objetoHabitante in Habitante where objetoHabitante.Edad >=20 select objetoHabitante).LastOrDefault();
+
+if (h1 == null)
 {
-    Console.WriteLine("NO EXISTE NADA");
+    Console.WriteLine("Algo fallo");
     return;
 }
-Console.WriteLine($"SI EXISTE: \nLa {buscarCasa.dameDatosCasa()}");
+Console.WriteLine(h1.datoHabitante());
+#endregion
