@@ -15,7 +15,7 @@ namespace Introduccion_LINQ
 
         public string dameDatosCasa() {
 
-            return $"Direccion es {Direccion} en la ciudad de {Ciudad} con numero de habitaciones {numHabitaciones}";
+            return $"Direccion: {Direccion} en la ciudad de {Ciudad} con numero de habitaciones {numHabitaciones}";
         }
     }
 }

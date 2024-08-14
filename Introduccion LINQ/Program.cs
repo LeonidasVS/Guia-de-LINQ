@@ -165,16 +165,37 @@ Habitante.Add(new Habitante
 #region Guia Clausula Last y LasOrDefault
 
 
-Casa ultimacasa = Casas.Last(temp=>temp.idCasa>1);
-Console.WriteLine(ultimacasa.dameDatosCasa());
-Console.WriteLine("---------------------------------------------------------\n");
+//Casa ultimacasa = Casas.Last(temp=>temp.idCasa>1);
+//Console.WriteLine(ultimacasa.dameDatosCasa());
+//Console.WriteLine("---------------------------------------------------------\n");
 
-var h1 = (from objetoHabitante in Habitante where objetoHabitante.Edad >=20 select objetoHabitante).LastOrDefault();
+//var h1 = (from objetoHabitante in Habitante where objetoHabitante.Edad >=20 select objetoHabitante).LastOrDefault();
 
-if (h1 == null)
-{
-    Console.WriteLine("Algo fallo");
-    return;
-}
-Console.WriteLine(h1.datoHabitante());
+//if (h1 == null)
+//{
+//    Console.WriteLine("Algo fallo");
+//    return;
+//}
+//Console.WriteLine(h1.datoHabitante());
 #endregion
+
+
+
+#region Clausulas ElementAt y ElementAtrOrDefault
+
+var terceraCasa = Casas.ElementAt(2);
+Console.WriteLine($"La tercera casa es: {terceraCasa.dameDatosCasa()}");
+
+var buscarError = Casas.ElementAtOrDefault(3);
+
+if (buscarError!=null)
+{
+    Console.WriteLine($"La tercera casa es: {buscarError.dameDatosCasa()}");
+}
+
+Console.WriteLine("----------------------------------------------------------------------------\n");
+var segundoHabitante = (from habitantedos in Habitante select habitantedos).ElementAtOrDefault(2);
+Console.WriteLine($"El segundo habitante es: {segundoHabitante.datoHabitante()}");
+#endregion
+
+
