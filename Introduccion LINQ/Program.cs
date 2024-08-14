@@ -94,7 +94,7 @@ Habitante.Add(new Habitante
 {
     idHabitante = 3,
     Nombre = "Rafael Edmundo",
-    Edad = 22,
+    Edad = 23,
     idCasa = 1
 });
 
@@ -183,19 +183,36 @@ Habitante.Add(new Habitante
 
 #region Clausulas ElementAt y ElementAtrOrDefault
 
-var terceraCasa = Casas.ElementAt(2);
-Console.WriteLine($"La tercera casa es: {terceraCasa.dameDatosCasa()}");
+//var terceraCasa = Casas.ElementAt(2);
+//Console.WriteLine($"La tercera casa es: {terceraCasa.dameDatosCasa()}");
 
-var buscarError = Casas.ElementAtOrDefault(3);
+//var buscarError = Casas.ElementAtOrDefault(3);
 
-if (buscarError!=null)
-{
-    Console.WriteLine($"La tercera casa es: {buscarError.dameDatosCasa()}");
-}
+//if (buscarError!=null)
+//{
+//    Console.WriteLine($"La tercera casa es: {buscarError.dameDatosCasa()}");
+//}
 
-Console.WriteLine("----------------------------------------------------------------------------\n");
-var segundoHabitante = (from habitantedos in Habitante select habitantedos).ElementAtOrDefault(2);
-Console.WriteLine($"El segundo habitante es: {segundoHabitante.datoHabitante()}");
+//Console.WriteLine("----------------------------------------------------------------------------\n");
+//var segundoHabitante = (from habitantedos in Habitante select habitantedos).ElementAtOrDefault(2);
+//Console.WriteLine($"El segundo habitante es: {segundoHabitante.datoHabitante()}");
 #endregion
 
+#region Clausula single y singleOrDefault
 
+try
+{
+    var habitantes = Habitante.Single(variableTem => variableTem.Edad <19);
+    Console.WriteLine($"Habitante con menos de 20 años {habitantes.datoHabitante()}");
+    var habitantes2 = (from objeto in Habitante where objeto.Edad >= 23 select objeto).SingleOrDefault();
+
+    if (habitantes2!=null)
+    {
+        Console.WriteLine($"Habitante mayor a 20 años {habitantes2.datoHabitante()}");
+    }
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Ocurrio un ERROR {ex.Message}");
+}
+#endregion
