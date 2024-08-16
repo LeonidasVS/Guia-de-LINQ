@@ -200,19 +200,35 @@ Habitante.Add(new Habitante
 
 #region Clausula single y singleOrDefault
 
-try
-{
-    var habitantes = Habitante.Single(variableTem => variableTem.Edad <19);
-    Console.WriteLine($"Habitante con menos de 20 años {habitantes.datoHabitante()}");
-    var habitantes2 = (from objeto in Habitante where objeto.Edad >= 23 select objeto).SingleOrDefault();
+//try
+//{
+//    var habitantes = Habitante.Single(variableTem => variableTem.Edad <19);
+//    Console.WriteLine($"Habitante con menos de 20 años {habitantes.datoHabitante()}");
+//    var habitantes2 = (from objeto in Habitante where objeto.Edad >= 23 select objeto).SingleOrDefault();
 
-    if (habitantes2!=null)
-    {
-        Console.WriteLine($"Habitante mayor a 20 años {habitantes2.datoHabitante()}");
-    }
-}
-catch (Exception ex)
-{
-    Console.WriteLine($"Ocurrio un ERROR {ex.Message}");
-}
+//    if (habitantes2!=null)
+//    {
+//        Console.WriteLine($"Habitante mayor a 20 años {habitantes2.datoHabitante()}");
+//    }
+//}
+//catch (Exception ex)
+//{
+//    Console.WriteLine($"Ocurrio un ERROR {ex.Message}");
+//}
 #endregion
+
+#region Clausula OfType
+var listadoEmpleados = new List<Empleado>()
+{
+
+    new Medico(){Nombre="Jorge Luis"},
+    new Empleado(){nombre="Juan Leonidas"}
+
+};
+
+var medico = listadoEmpleados.OfType<Medico>();
+
+Console.WriteLine(medico.Single().Nombre);
+    
+#endregion
+
