@@ -106,7 +106,6 @@ Habitante.Add(new Habitante
     idCasa = 1
 });
 
-
 //IEnumerable<Habitante> ListaEdades = from edades in Habitante
 //                                     where edades.Edad > 17 && edades.Edad<20
 //                                     select edades;
@@ -164,7 +163,6 @@ Habitante.Add(new Habitante
 
 #region Guia Clausula Last y LasOrDefault
 
-
 //Casa ultimacasa = Casas.Last(temp=>temp.idCasa>1);
 //Console.WriteLine(ultimacasa.dameDatosCasa());
 //Console.WriteLine("---------------------------------------------------------\n");
@@ -178,8 +176,6 @@ Habitante.Add(new Habitante
 //}
 //Console.WriteLine(h1.datoHabitante());
 #endregion
-
-
 
 #region Clausulas ElementAt y ElementAtrOrDefault
 
@@ -218,17 +214,47 @@ Habitante.Add(new Habitante
 #endregion
 
 #region Clausula OfType
-var listadoEmpleados = new List<Empleado>()
-{
+//var listadoEmpleados = new List<Empleado>()
+//{
 
-    new Medico(){Nombre="Jorge Luis"},
-    new Empleado(){nombre="Juan Leonidas"}
+//    new Medico(){Nombre="Jorge Luis"},
+//    new Empleado(){nombre="Juan Leonidas"}
 
-};
+//};
 
-var medico = listadoEmpleados.OfType<Medico>();
+//var medico = listadoEmpleados.OfType<Medico>();
 
-Console.WriteLine(medico.Single().Nombre);
-    
+//Console.WriteLine(medico.Single().Nombre);
+
 #endregion
 
+#region Clausula OrderBy  y OrderbyDescending
+// ORDENANDO DE MANERA ASCENDENTE // 
+
+//var edadA = Habitante.OrderBy(x => x.Edad);
+//var edadAC = from vt in Habitante orderby vt.Edad select vt;
+
+//foreach (var edades in edadA /*o edadesAC*/)
+//{
+//    Console.WriteLine(edades.datoHabitante());
+//}
+
+
+// ORDENANDO DE MANERA DESCENDENTE //
+
+//var listadoEdad = Habitante.OrderByDescending(x => x.Edad);
+
+//foreach (var edades in listadoEdad)
+//{
+//    Console.WriteLine(edades.datoHabitante());
+//}
+
+//Console.WriteLine("---------------------------------------------------------------");
+
+//var listadoEdad2 = from obejeto in Habitante orderby obejeto.Edad descending select obejeto;
+
+//foreach (var edades in listadoEdad2)
+//{
+//    Console.WriteLine(edades.datoHabitante());
+//}
+#endregion
