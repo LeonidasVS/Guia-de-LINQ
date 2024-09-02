@@ -86,7 +86,7 @@ Habitante.Add(new Habitante
 {
     idHabitante = 2,
     Nombre = "Bryan Alexis",
-    Edad = 22,
+    Edad = 19,
     idCasa = 2
 });
 
@@ -257,4 +257,42 @@ Habitante.Add(new Habitante
 //{
 //    Console.WriteLine(edades.datoHabitante());
 //}
+#endregion
+
+#region Clausula ThenBy y ThenByDescending
+
+//ORDENANDO DE MANERA ASCENDENTE
+
+//var habitantes = Habitante.OrderBy(x => x.Edad).ThenBy(x => x.Nombre);
+
+//foreach (var edad in habitantes)
+//{
+//    Console.WriteLine(edad.datoHabitante());
+//}
+
+//Console.WriteLine("---------------------------------------------------------------");
+
+//var habitante2 = from objeto in Habitante orderby objeto.Edad, objeto.Nombre ascending select objeto;
+
+//foreach (var h in habitante2)
+//{
+//    Console.WriteLine(h.datoHabitante());
+//}
+
+//ORDENANDO DE MANERA DESCENTEDENTE
+
+var habitantes4 = Habitante.OrderBy(x => x.Edad).ThenByDescending(x => x.Nombre);
+
+foreach (var h in habitantes4)
+{
+    Console.WriteLine(h.datoHabitante());
+}
+Console.WriteLine("---------------------------------------------------------------");
+
+var lista4 = from h in Habitante orderby h.Edad, h.Nombre descending select h;
+
+foreach (var h in lista4)
+{
+    Console.WriteLine(h.datoHabitante());
+}
 #endregion
