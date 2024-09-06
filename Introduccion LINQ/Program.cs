@@ -36,18 +36,34 @@ using Introduccion_LINQ;
 
 #region Guia LINQ
 // ---- GUIA DE LINQ ----- //
+// Crear una nueva lista de objetos de tipo Casa
+// Esta lista se utilizará para almacenar y manejar múltiples instancias de la clase Casa.
 List<Casa> Casas = new List<Casa>();
+
+// Crear una nueva lista de objetos de tipo Habitante
+// Esta lista se utilizará para almacenar y manejar múltiples instancias de la clase Habitante.
 List<Habitante> Habitante = new List<Habitante>();
 
 //CASAS
 
+// Agregar un nuevo objeto de tipo Casa a la lista Casas
+// El objeto representará una casa con las siguientes propiedades
 Casas.Add(new Casa
 {
+    // Establece el identificador único de la casa como 1
     idCasa = 1,
-    Direccion="3 av Norte Arcancity",
-    Ciudad="Gothan City",
-    numHabitaciones=10,
+
+    // Establece la dirección de la casa como "3 av Norte Arcancity"
+    Direccion = "3 av Norte Arcancity",
+
+    // Establece la ciudad donde se encuentra la casa como "Gothan City"
+    Ciudad = "Gothan City",
+
+    // Establece el número de habitaciones en la casa como 10
+    numHabitaciones = 10,
 });
+
+
 
 Casas.Add(new Casa
 {
@@ -75,12 +91,23 @@ Casas.Add(new Casa
 
 
 //HABITANTES
-Habitante.Add(new Habitante { 
-    idHabitante=1,
-    Nombre="Anderson Juvini",
-    Edad=19,
-    idCasa=2
+// Agregar un nuevo objeto de tipo Habitante a la lista Habitante
+// El objeto representará a un habitante con las siguientes propiedades
+Habitante.Add(new Habitante
+{
+    // Establece el identificador único del habitante como 1
+    idHabitante = 1,
+
+    // Establece el nombre del habitante como "Anderson Juvini"
+    Nombre = "Anderson Juvini",
+
+    // Establece la edad del habitante como 19 años
+    Edad = 19,
+
+    // Establece el identificador de la casa en la que vive el habitante como 2
+    idCasa = 2
 });
+
 
 Habitante.Add(new Habitante
 {
@@ -106,28 +133,51 @@ Habitante.Add(new Habitante
     idCasa = 1
 });
 
-//IEnumerable<Habitante> ListaEdades = from edades in Habitante
-//                                     where edades.Edad > 17 && edades.Edad<20
-//                                     select edades;
-//Console.WriteLine("------------------------------------------");
-//foreach (Habitante edades2 in ListaEdades)
-//{
-//    Console.WriteLine(edades2.datoHabitante());
-//}
+/*
+// Consulta para filtrar los habitantes cuya edad está entre 18 y 19 años
+// `IEnumerable<Habitante>` es una interfaz que representa una colección de objetos `Habitante` que se puede enumerar.
+// La consulta usa LINQ (Language Integrated Query) para seleccionar los habitantes con edades mayores a 17 y menores a 20.
+IEnumerable<Habitante> ListaEdades = from edades in Habitante
+                                     where edades.Edad > 17 && edades.Edad < 20
+                                     select edades;
 
-//Console.WriteLine("------------------------------------------");
+// Imprime una línea de separación en la consola
+Console.WriteLine("------------------------------------------");
 
-//IEnumerable<Habitante> ListaCasas2 = from habitantetemportal in Habitante
-//                                     join casatemportal in Casas
-//                                     on habitantetemportal.idHabitante equals casatemportal.idCasa
-//                                     where casatemportal.Ciudad == "Nueva Concepcion"
-//                                     select habitantetemportal;
-//Console.WriteLine("\n------------------------------------------");
-//foreach (Habitante h in ListaCasas2)
-//{
-//    Console.WriteLine(h.datoHabitante());
-//}
-//Console.WriteLine("------------------------------------------");
+// Itera sobre cada objeto `Habitante` en la colección `ListaEdades`
+// y llama al método `datoHabitante()` para imprimir los detalles del habitante en la consola
+foreach (Habitante edades2 in ListaEdades)
+{
+    // Imprime los detalles del habitante actual
+    Console.WriteLine(edades2.datoHabitante());
+}
+
+// Imprime una línea de separación en la consola
+Console.WriteLine("------------------------------------------");
+
+// Consulta para encontrar los habitantes que viven en casas ubicadas en "Nueva Concepcion"
+// Esta consulta utiliza una cláusula `join` para combinar la lista de `Habitante` con la lista de `Casa`
+// en función de que el `idCasa` del habitante coincida con el `idCasa` de la casa.
+IEnumerable<Habitante> ListaCasas2 = from habitantetemportal in Habitante
+                                     join casatemportal in Casas
+                                     on habitantetemportal.idCasa equals casatemportal.idCasa
+                                     where casatemportal.Ciudad == "Nueva Concepcion"
+                                     select habitantetemportal;
+
+// Imprime una línea de separación en la consola
+Console.WriteLine("\n------------------------------------------");
+
+// Itera sobre cada objeto `Habitante` en la colección `ListaCasas2`
+// y llama al método `datoHabitante()` para imprimir los detalles del habitante en la consola
+foreach (Habitante h in ListaCasas2)
+{
+    // Imprime los detalles del habitante actual
+    Console.WriteLine(h.datoHabitante());
+}
+
+// Imprime una línea de separación en la consola
+Console.WriteLine("------------------------------------------");
+*/
 
 #endregion
 
@@ -283,16 +333,28 @@ Habitante.Add(new Habitante
 
 var habitantes4 = Habitante.OrderBy(x => x.Edad).ThenByDescending(x => x.Nombre);
 
+// Itera sobre cada objeto Habitante en la colección ordenada 'habitantes4'
+// e imprime los detalles del habitante en la consola
 foreach (var h in habitantes4)
 {
+    // Imprime los detalles del habitante actual llamando al método datoHabitante()
     Console.WriteLine(h.datoHabitante());
 }
+
+// Imprime una línea de separación en la consola para mejorar la legibilidad
 Console.WriteLine("---------------------------------------------------------------");
 
-var lista4 = from h in Habitante orderby h.Edad, h.Nombre descending select h;
+// Consulta LINQ que ordena los habitantes primero por edad en orden ascendente y luego por nombre en orden descendente
+// Utiliza la sintaxis de consulta LINQ con 'orderby' para la primera ordenación y 'descending' para la segunda.
+var lista4 = from h in Habitante
+             orderby h.Edad, h.Nombre descending
+             select h;
 
+// Itera sobre cada objeto Habitante en la colección ordenada 'lista4'
+// e imprime los detalles del habitante en la consola
 foreach (var h in lista4)
 {
+    // Imprime los detalles del habitante actual llamando al método datoHabitante()
     Console.WriteLine(h.datoHabitante());
 }
 #endregion

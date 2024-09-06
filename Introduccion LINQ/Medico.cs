@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Introduccion_LINQ
 {
-    public class Medico:Empleado
+    // Definición de la clase Medico que hereda de la clase Empleado
+    public class Medico : Empleado
     {
+        // Propiedad pública de tipo string para almacenar el nombre del médico
         public string Nombre { get; set; }
     }
 }
